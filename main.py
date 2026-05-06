@@ -87,7 +87,7 @@ def main():
                         "content": final_response.choices[0].message.reasoning_content,
                     }
                 )
-            elif response.choices[0].message.content:
+            else:
                 print(
                     "\nAssistant:",
                     response.choices[0].message.content,
@@ -99,13 +99,12 @@ def main():
                         "content": response.choices[0].message.content,
                     }
                 )
+                break
                 # elif response.choices[0].message.reasoning_content:
                 # print(
                 #    "\nAssistant:",
                 #    response.choices[0].message.reasoning_content,
                 # )
-            else:
-                break
 
         except Exception as e:
             print(f"\nAn error occurred: {e}")
