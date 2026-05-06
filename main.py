@@ -1,9 +1,6 @@
 import argparse
 import json
-import os
-from enum import auto
 
-import lmstudio as lms
 from openai import OpenAI
 
 from prompts import system_prompt
@@ -72,14 +69,9 @@ def main():
                     "content": response.choices[0].message.content,
                 }
             )
-            # print("Stage Response: ", response.choices[0].message.reasoning_content)
-            # print("Stage Tools: ", response.choices[0].message.tool_calls)
+
             if response.choices[0].message.tool_calls:
                 final_response = process_tool_calls(response, messages)
-                # print(
-                #    "\nAssistant:",
-                #    final_response.choices[0].message.reasoning_content,
-                # )
 
                 messages.append(
                     {
@@ -100,11 +92,6 @@ def main():
                     }
                 )
                 break
-                # elif response.choices[0].message.reasoning_content:
-                # print(
-                #    "\nAssistant:",
-                #    response.choices[0].message.reasoning_content,
-                # )
 
         except Exception as e:
             print(f"\nAn error occurred: {e}")
